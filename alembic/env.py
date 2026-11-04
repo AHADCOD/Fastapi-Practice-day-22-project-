@@ -15,6 +15,13 @@ from alembic import context
 # access to the values within the .ini file in use.
 config = context.config
 
+from config import setting
+
+config.set_main_option(
+    "sqlalchemy.url",
+    setting.database_url.replace("%", "%%"),
+)
+
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
 if config.config_file_name is not None:
